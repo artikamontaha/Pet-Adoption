@@ -9,37 +9,34 @@ const loadcard = () => {
     })
     .catch(error => console.error("Error fetching data:", error));
     }
-    
-    
 const loadAllCard = () => {
     fetch("https://openapi.programming-hero.com/api/peddy/pets")
     .then((res) => res.json())
     .then((data) => Displaycard(data.pets))
     .catch((error) => console.error(error))
     }
-    
 const Button = {
     category: "Cat",
     category_icon: "https://i.ibb.co/N7dM2K1/cat.png",
     id: 1
     };
-    
     const pet = {
-    "petId": 1,
-    "breed": 'Golden Retriever',
-    "category": 'Dog',
-    "date_of_birth": '2023-01-15',
-    "price": 1200,
-    "gender": 'Male',
-    "image": 'https://i.ibb.co.com/p0w744T/pet-1.jpg',
-    "pet_details": 'This friendly male Golden Retriever is energetic and loyal, making him a perfect companion...',
-    "pet_name": 'Sunny',
-    "vaccinated_status": 'Fully'
+        "petId": 1,
+        "breed": 'Golden Retriever',
+        "category": 'Dog',
+        "date_of_birth": '2023-01-15',
+        "price": 1200,
+        "gender": 'Male',
+        "image": 'https://i.ibb.co/p0w744T/pet-1.jpg', // সঠিক করা লিঙ্ক
+        "pet_details": 'This friendly male Golden Retriever is energetic and loyal, making him a perfect companion...',
+        "pet_name": 'Sunny',
+        "vaccinated_status": 'Fully'
     };
-    
-    const Displaycard = (pets) => {
-    // console.log(pets);    
+
+const Displaycard = (pets) => {
+    console.log(pets);    
     const CardConteiner = document.getElementById("allCard");
+    CardConteiner.innerHTML = ``
     pets.forEach((pet, index) => { 
     // console.log(pet);
     const card = document.createElement('div');
@@ -99,24 +96,9 @@ const Button = {
     
     CardConteiner.append(card);
     });
-    }
-    
-    
-    
-    // document.getElementById('dogButton').addEventListener('click', function() {
-    //     fetch("https://openapi.programming-hero.com/api/peddy/category/dog")
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log(data); 
-    //         console.log(data.categories); 
-    //         if (data.categories) {
-    //             DisplayCatagoris(data.categories);
-    //         }
-    // })
-    // .catch(error => console.error("Error fetching data:", error));
-    // });
-   
-    function HandleLikeBtn (img) {
+}
+
+function HandleLikeBtn (img) {
         const likePets = document.getElementById("like_pets")
         const creatDiv = document.createElement('div')
         creatDiv.innerHTML = `
@@ -125,57 +107,55 @@ const Button = {
         likePets.appendChild(creatDiv)
     }
 
-    
-    
-    
-    const DisplayCatagoris = (categories) => {
-    const categoryContainer = document.getElementById('categoris');
-    
-    categories.forEach((item) => {
-    // console.log(item);
-    
-    const card = document.createElement('div');
-    card.classList.add("category-card"); 
-    card.innerHTML = `
-    <div class="category-content flex font-bold gap-2 text-2xl">
-    <img src="${item.category_icon}" alt="icon">
-    <button class="btn_all">${item.category}</button>
-    </div>
-    `;
-    
-    
-    categoryContainer.append(card);
-    });
+
+const DisplayCatagoris = (categories) => {
+        const categoryContainer = document.getElementById('categoris');
+        
+        categories.forEach((item) => {
+            // console.log(item);
+            const card = document.createElement('div');
+            card.classList.add("category-card"); 
+            card.innerHTML = `
+            <button onclick="loadOneOneCard('${item.category}')" class="category-content flex font-bold gap-2 text-2xl">
+            <img src="${item.category_icon}" alt="icon">
+            <p>${item.category}</p>
+            </button>
+            `;
+
+            categoryContainer.append(card);
+            // console.log(categories);
+        });
     }
     
-    
-    
-    // const loadcatagoris = () => {
-    //     fetch("https://openapi.programming-hero.com/api/peddy/category/dog")
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log(data);  
-    //         if (data.categories) {
-    //             DisplayCatagoris(data.categories);
-    //         } 
-    //     })
-    //     .catch(error => console.error("Error fetching data:", error));
-    // }
-    
-    // const onlyDog = {
-    //     breed: "Golden Retriever",
-    //     category: "Dog",
-    //     dateOfBirth: "2023-01-15",
-    //     gender: "Male",
-    //     image: "https://i.ibb.co.com/p0w744T/pet-1.jpg",
-    //     petId: 1,
-    //     petDetails: "This friendly male Golden Retriever is energetic and loyal, making him a perfect companion for families. Born on January 15, 2023, he enjoys playing outdoors and is especially great with children. Fully vaccinated, he's ready to join your family and bring endless joy. Priced at $1200, he offers love, loyalty, and a lively spirit for those seeking a playful yet gentle dog.",
-    //     petName: "Sunny",
-    //     price: 1200,
-    //     vaccinatedStatus: "Fully"
-    // };
+const loadOneOneCard = (petName) => {
+    // console.log(petName);    
+    // alert(id)
+    fetch(`https://openapi.programming-hero.com/api/peddy/category/${petName}`)
+    .then((res) => res.json())
+    .then((data) => Displaycard(data.data))
+    .catch((error) => console.error(error))
+}
 
-    
-    loadcard();
-    loadAllCard()
-    // loadcatagoris()
+
+// const loadDogData = () => {
+//     fetch('https://openapi.programming-hero.com/api/peddy/category/dog')
+//     .then((res) => res.json()) // রেসপন্সকে JSON ফরম্যাটে রূপান্তর
+//     .then((data) => {
+//         console.log(data); // API থেকে আসা ডাটা কনসোলে দেখান
+//         if (data.status) {
+//             console.log("কুকুরের ডাটা পাওয়া গেছে:", data.data); // যদি ডাটা থাকে
+//         } else {
+//             console.log("কুকুরের জন্য কোন ডাটা নেই"); // যদি ডাটা না থাকে
+//         }
+//     })
+//     .catch((error) => console.error("ত্রুটি:", error)); // ত্রুটি হ্যান্ডলিং
+// }
+
+// ফাংশনটি কল করুন
+
+
+
+loadcard();
+loadAllCard()
+// loadcatagoris()
+// loadOneOneCard()
