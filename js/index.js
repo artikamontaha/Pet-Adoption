@@ -9,10 +9,16 @@ const loadcard = () => {
     })
     .catch(error => console.error("Error fetching data:", error));
     }
+
+
 const loadAllCard = () => {
     fetch("https://openapi.programming-hero.com/api/peddy/pets")
     .then((res) => res.json())
-    .then((data) => Displaycard(data.pets))
+    .then((data) => {
+        Displaycard(data.pets)
+        // const activeBtn = document.getElementById(``)        
+        // console.log(activeBtn)
+    })
     .catch((error) => console.error(error))
     }
 const Button = {
@@ -37,6 +43,21 @@ const Displaycard = (pets) => {
     console.log(pets);    
     const CardConteiner = document.getElementById("allCard");
     CardConteiner.innerHTML = ``
+
+    if(pets.length == 0){
+        CardConteiner.classList.remove("grid")
+        CardConteiner.innerHTML = `
+        <div class="min-h-[400px]  flex flex-col gap-5 justify-center items-center">
+        <img src="./images/error.webp" alt="">
+        <h1 class="text-3xl font-bold">No Information Available</h1>
+        <p class="text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at 
+        its layout. The point of using Lorem Ipsum is that it has a.</p>
+        </div>
+        `
+        return
+    }
+    CardConteiner.classList.add("grid")
+
     pets.forEach((pet, index) => { 
     // console.log(pet);
     const card = document.createElement('div');
@@ -76,13 +97,13 @@ const Displaycard = (pets) => {
     <dialog id="modal_${index}" class="modal modal-bottom sm:modal-middle">
     <div class="modal-box">
     <img src="${pet.image}" alt="Pet Image" class="rounded-lg w-full" />
-    <p class="mt-5 font-bold">Breed: ${pet.breed}</p>
-    <p class=" font-bold">Name: ${pet.pet_name}</p>
-    <p class=" font-bold">Date of Birth: ${pet.date_of_birth}</p>
-    <p class=" font-bold">Gender: ${pet.gender}</p>
-    <p class="font-bold">Price: ${pet.price}</p>
-    <p class="font-bold">Vaccination Status: ${pet.vaccinated_status}</p>
-    <p class="font-bold">Details Information: <br> ${pet.pet_details}</p>
+    <p class="mt-5 font-bold">Breed: ${pet.breed || 'not found'}</p>
+    <p class=" font-bold">Name: ${pet.pet_name || 'not found'}</p>
+    <p class=" font-bold">Date of Birth: ${pet.date_of_birth || 'not found'}</p>
+    <p class=" font-bold">Gender: ${pet.gender || 'not found'}</p>
+    <p class="font-bold">Price: ${pet.price || 'not found'}</p>
+    <p class="font-bold">Vaccination Status: ${pet.vaccinated_status || 'not found'}</p>
+    <p class="font-bold">Details Information: <br> ${pet.pet_details || 'not found'}</p>
     <div class="modal-action">
     <form method="dialog">
     <button class="btn md:w-[460px] ml-10 bg-[#0E7A81]">Close</button>
@@ -116,8 +137,8 @@ const DisplayCatagoris = (categories) => {
             const card = document.createElement('div');
             card.classList.add("category-card"); 
             card.innerHTML = `
-            <button onclick="loadOneOneCard('${item.category}')" class="category-content flex font-bold gap-2 text-2xl">
-            <img src="${item.category_icon}" alt="icon">
+            <button id="btn-${item.id}" onclick="loadOneOneCard('${item.category}')" class="category-content flex font-bold gap-2 text-2xl">
+            <img src="${item.category_icon}" alt="icon" class="category-btn">
             <p class="mt-2">${item.category}</p>
             </button>
             `;
