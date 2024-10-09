@@ -27,7 +27,7 @@ const Button = {
         "date_of_birth": '2023-01-15',
         "price": 1200,
         "gender": 'Male',
-        "image": 'https://i.ibb.co/p0w744T/pet-1.jpg', // সঠিক করা লিঙ্ক
+        "image": 'https://i.ibb.co/p0w744T/pet-1.jpg',
         "pet_details": 'This friendly male Golden Retriever is energetic and loyal, making him a perfect companion...',
         "pet_name": 'Sunny',
         "vaccinated_status": 'Fully'
@@ -42,7 +42,7 @@ const Displaycard = (pets) => {
     const card = document.createElement('div');
     card.classList = `card card-compact`;
     card.innerHTML = `
-    <div class="card bg-base-100 p-3 shadow-xl">
+    <div class="card bg-base-100  shadow-xl  border p-3">
     <figure>
     <img class="rounded-lg w-full object-cover" src="${pet.image}" alt="${pet.pet_name}" />
     </figure>
@@ -51,19 +51,19 @@ const Displaycard = (pets) => {
     <div class="grid gap-3">
     <p class="flex font-bold text-1xl text-gray-500 gap-2">
     <img src="https://cdn-icons-png.flaticon.com/128/747/747327.png" alt="" class="w-5 h-5">
-    Breed: ${pet.breed}
+    Breed: ${pet.breed || 'not found'}
     </p>
     <p class="flex font-bold text-1xl text-gray-500 gap-2">
     <img src="https://cdn-icons-png.flaticon.com/128/3239/3239948.png" alt="" class="w-5 h-5">
-    Birth: ${pet.date_of_birth || 'Undefiend'}
+    Birth: ${pet.date_of_birth || 'not found'}
     </p>
     <p class="flex font-bold text-1xl text-gray-500 gap-2">
     <img src="https://cdn-icons-png.flaticon.com/128/866/866954.png" alt="" class="w-5 h-5">
-    Gender: ${pet.gender || 'Undefiend'}
+    Gender: ${pet.gender || 'not found'}
     </p>
     <p class="flex font-bold text-1xl text-gray-500 gap-2">
     <img src="https://cdn-icons-png.flaticon.com/128/126/126179.png" alt="" class="w-5 h-5">
-    Price: ${pet.price || 'Undefiend'}
+    Price: ${pet.price || 'not found'}
     </p>
     </div>
     </div>
@@ -118,7 +118,7 @@ const DisplayCatagoris = (categories) => {
             card.innerHTML = `
             <button onclick="loadOneOneCard('${item.category}')" class="category-content flex font-bold gap-2 text-2xl">
             <img src="${item.category_icon}" alt="icon">
-            <p>${item.category}</p>
+            <p class="mt-2">${item.category}</p>
             </button>
             `;
 
@@ -126,6 +126,10 @@ const DisplayCatagoris = (categories) => {
             // console.log(categories);
         });
     }
+
+
+
+
     
 const loadOneOneCard = (petName) => {
     // console.log(petName);    
@@ -135,23 +139,6 @@ const loadOneOneCard = (petName) => {
     .then((data) => Displaycard(data.data))
     .catch((error) => console.error(error))
 }
-
-
-// const loadDogData = () => {
-//     fetch('https://openapi.programming-hero.com/api/peddy/category/dog')
-//     .then((res) => res.json()) // রেসপন্সকে JSON ফরম্যাটে রূপান্তর
-//     .then((data) => {
-//         console.log(data); // API থেকে আসা ডাটা কনসোলে দেখান
-//         if (data.status) {
-//             console.log("কুকুরের ডাটা পাওয়া গেছে:", data.data); // যদি ডাটা থাকে
-//         } else {
-//             console.log("কুকুরের জন্য কোন ডাটা নেই"); // যদি ডাটা না থাকে
-//         }
-//     })
-//     .catch((error) => console.error("ত্রুটি:", error)); // ত্রুটি হ্যান্ডলিং
-// }
-
-// ফাংশনটি কল করুন
 
 
 
