@@ -1,7 +1,7 @@
-* Project Name.
+* Project Name: 
 "Pet Adopted"
 
-* Short Description of the website.
+* Short Description of the website: 
 The last 5-6 day's I make a website in my course Assaingment. This Assaingment is adopted a pet. The website have Navber, Header, Main, and a footer. This website I used HTML, Tailwind, and js(ES6). you can there have adopted only 4 diffirent animals. 'DOG', 'CAT', 'RABBIT', and 'BIRD'.
 
 * 5 key features of the project.
