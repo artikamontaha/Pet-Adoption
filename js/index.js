@@ -44,20 +44,19 @@ const Displaycard = (pets) => {
     const CardConteiner = document.getElementById("allCard");
     CardConteiner.innerHTML = ``
 
-    if(pets.length == 0){
-        CardConteiner.classList.remove("grid")
+    if(pets.length == 0) {
+        CardConteiner.classList.remove("grid");
         CardConteiner.innerHTML = `
-        <div class="min-h-[400px]  flex flex-col gap-5 justify-center items-center">
-        <img src="./images/error.webp" alt="">
-        <h1 class="text-3xl font-bold">No Information Available</h1>
-        <p class="text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at 
-        its layout. The point of using Lorem Ipsum is that it has a.</p>
+        <div class="min-h-[400px] flex flex-col gap-5 justify-center items-center text-center">
+            <img src="./images/error.webp" alt="" class="max-w-[200px]">
+            <h1 class="text-3xl font-bold">No Information Available</h1>
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
         </div>
-        `
-        return
+        `;
+        return;
     }
-    CardConteiner.classList.add("grid")
-
+    CardConteiner.classList.add("grid");
+    
     pets.forEach((pet, index) => { 
     // console.log(pet);
     const card = document.createElement('div');
