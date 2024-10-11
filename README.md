@@ -1,5 +1,4 @@
-Project Name:
-"Pet Adopted"
+Project Name: "Pet Adopted"
 
 Short Description of the Website:
 In the last 5-6 days, I made a website for my course assignment called "Pet Adopted." This website allows users to adopt a pet and includes a Navbar, Header, Main section, and Footer. The technologies used are HTML, Tailwind CSS, and JavaScript (ES6). The website offers adoption options for four different animals: 'DOG', 'CAT', 'RABBIT', and 'BIRD'.
@@ -13,10 +12,11 @@ In the last 5-6 days, I made a website for my course assignment called "Pet Adop
 
 
 ES6 Features Used:
+1.Arrow Functions (=>)
+2.Let & Const
+3.Default Parameters
+4.Object Properties
+5.Destructuring
 
-Arrow Functions (=>)
-Let & Const
-Default Parameters
-Object Properties
-Destructuring
+
 Live Link to the Project:
